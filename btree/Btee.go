@@ -91,7 +91,7 @@ func generateArray(mapSize int, random bool) []int {
 			res[i] = int(rand.Int63n(int64(mapSize*mapSize)))
 		}
 	} else {
-		for i, val := range([]int{1,2,3,4,5}) {
+		for i, val := range([]int{4,6,2,7,5,3,1}) {
 			res[i] = val
 		}
 	}
@@ -99,15 +99,15 @@ func generateArray(mapSize int, random bool) []int {
 }
 
 func main() {
-	mapSize := 10
+	mapSize := 7
 	head := &node{}
-	tmpArray := generateArray(mapSize, true)
+	tmpArray := generateArray(mapSize, false)
 
 	for _,val := range(tmpArray) {
 		insertBtree(head, val)
 	}
 
-	pathVar := 4
+	pathVar := 3
 	fmt.Println("Search for a path to", pathVar)
 	var path []int
 	if findPath(head, pathVar, &path) {

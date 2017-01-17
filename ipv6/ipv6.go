@@ -24,7 +24,7 @@ func main() {
             for n:=0 ; n<7-i ; n++ {
                 appendPart = append(appendPart, "0000")
             }
-        } else if part < "ffff"{
+        } else if part <= "ffff"{
             for k:=len(part); k<4; k++ {
                 part = "0" + part
             }

@@ -19,21 +19,25 @@ func main() {
     var ipv6full []string
 
     for i, part := range(ipv6raw) {
-        var appendPart []string
         if part == "xxxx" {
-            for n:=0 ; n<7-i ; n++ {
-                appendPart = append(appendPart, "0000")
+            /*
+            8 (len of ipv6)
+            -i(How many were before)
+            -(len(origin string)-How many were before, to get how many will be after
+            +1 for current position
+            */
+            for n:=0; n<8-i-(len(ipv6raw)-i)+1 ; n++ {
+                ipv6full = append(ipv6full, "0000")
             }
         } else if part < "ffff"{
             for k:=len(part); k<4; k++ {
                 part = "0" + part
             }
-            appendPart = append(appendPart, part)
+            ipv6full = append(ipv6full, part)
         } else {
             fmt.Println("ipv6 can not exceed ffff for 1 group: " + part)
             os.Exit(1)
         }
-        ipv6full = append(ipv6full, appendPart...)
     }
 
     fmt.Println(strings.Join(ipv6full, ":"))

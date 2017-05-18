@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
+import threading
 
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -21,9 +23,12 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         return
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+
 def run():
     server_address = ('127.0.0.1', 7000)
-    httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
+    httpd = ThreadedHTTPServer(server_address, testHTTPServer_RequestHandler)
     httpd.serve_forever()
 
 run()

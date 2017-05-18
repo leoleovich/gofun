@@ -56,6 +56,6 @@ Requests per second:    2390.44 [#/sec] (mean)
 </details>
 
 ```
-ab -c 50 -n 300 http://127.0.0.1:7000/ (10 times smaller)
+ab -c 50 -n 300 http://127.0.0.1:7000/ (10 times less)
 Requests per second:    1427.92 [#/sec] (mean)
 ```
